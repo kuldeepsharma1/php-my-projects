@@ -16,7 +16,9 @@
   <!-- Google Fonts -->
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap" rel="stylesheet">
+  <link
+    href="https://fonts.googleapis.com/css2?family=Open+Sans:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Poppins:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&family=Source+Sans+Pro:ital,wght@0,300;0,400;0,600;0,700;1,300;1,400;1,600;1,700&display=swap"
+    rel="stylesheet">
 
   <!-- Vendor CSS Files -->
   <link href="assets/vendor/bootstrap/css/bootstrap.min.css" rel="stylesheet">
@@ -48,7 +50,7 @@
 
 <body>
 
-<?php require_once 'utils/_nav.php' ?>
+  <?php require_once 'utils/_nav.php' ?>
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
@@ -76,197 +78,61 @@
 
             <div class="row gy-4 posts-list">
 
-              <div class="col-lg-6">
-                <article class="d-flex flex-column">
 
-                  <div class="post-img">
-                    <img src="assets/img/blog/blog-1.jpg" alt="" class="img-fluid">
+              <?php
+              require 'utils/_db_connect.php';
+              $sql = "SELECT * FROM `blog`";
+              $result = mysqli_query($conn, $sql);
+              while ($row = mysqli_fetch_assoc($result)) {
+                ?>
+                <div class="col-lg-6">
+                  <article class="d-flex flex-column">
+
+                    <div class="post-img">
+                      <img src="<?php echo $row['img']; ?>" alt="" class="img-fluid">
+                    </div>
+
+                    <h2 class="title">
+                      <a href="blog-details.php">
+                        <?php echo $row['title']; ?>
+                      </a>
+                    </h2>
+
+                    <div class="meta-top">
+                      <ul>
+                        <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
+                            href="blog-details.php">Author Name</a></li>
+                        <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.php"><time
+                              datetime="2022-01-01">Jan 1, 2022</time></a></li>
+                        <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a
+                            href="blog-details.php">12 Comments</a></li>
+                      </ul>
+                    </div>
+
+                    <div class="content">
+                      <p>
+                        <?php echo $row['short_desc']; ?>
+                      </p>
+                    </div>
+
+                    <div class="read-more mt-auto align-self-end">
+                      <a href="/php-my-projects/blog-details.php?slug=<?php echo $row['slug']; ?>">Read More</a>
+                    </div>
+
+                  </article>
                   </div>
+                  <?php
+              }
+              ?>
 
-                  <h2 class="title">
-                    <a href="blog-details.php">Dolorum optio tempore voluptas dignissimos cumque fuga qui quibusdam quia</a>
-                  </h2>
 
-                  <div class="meta-top">
-                    <ul>
-                      <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.php">John Doe</a></li>
-                      <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.php"><time datetime="2022-01-01">Jan 1, 2022</time></a></li>
-                      <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.php">12 Comments</a></li>
-                    </ul>
-                  </div>
+              
+              <!-- End post list item -->
 
-                  <div class="content">
-                    <p>
-                      Similique neque nam consequuntur ad non maxime aliquam quas. Quibusdam animi praesentium. Aliquam et laboriosam eius aut nostrum quidem aliquid dicta.
-                    </p>
-                  </div>
 
-                  <div class="read-more mt-auto align-self-end">
-                    <a href="blog-details.php">Read More</a>
-                  </div>
 
-                </article>
-              </div><!-- End post list item -->
 
-              <div class="col-lg-6">
-                <article class="d-flex flex-column">
 
-                  <div class="post-img">
-                    <img src="assets/img/blog/blog-2.jpg" alt="" class="img-fluid">
-                  </div>
-
-                  <h2 class="title">
-                    <a href="blog-details.php">Nisi magni odit consequatur autem nulla dolorem</a>
-                  </h2>
-
-                  <div class="meta-top">
-                    <ul>
-                      <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.php">John Doe</a></li>
-                      <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.php"><time datetime="2022-01-01">Jan 1, 2022</time></a></li>
-                      <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.php">12 Comments</a></li>
-                    </ul>
-                  </div>
-
-                  <div class="content">
-                    <p>
-                      Incidunt voluptate sit temporibus aperiam. Quia vitae aut sint ullam quis illum voluptatum et. Quo libero rerum voluptatem pariatur nam.
-                    </p>
-                  </div>
-
-                  <div class="read-more mt-auto align-self-end">
-                    <a href="blog-details.php">Read More</a>
-                  </div>
-
-                </article>
-              </div><!-- End post list item -->
-
-              <div class="col-lg-6">
-                <article class="d-flex flex-column">
-
-                  <div class="post-img">
-                    <img src="assets/img/blog/blog-3.jpg" alt="" class="img-fluid">
-                  </div>
-
-                  <h2 class="title">
-                    <a href="blog-details.php">Possimus soluta ut id suscipit ea ut. In quo quia et soluta libero sit sint.</a>
-                  </h2>
-
-                  <div class="meta-top">
-                    <ul>
-                      <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.php">John Doe</a></li>
-                      <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.php"><time datetime="2022-01-01">Jan 1, 2022</time></a></li>
-                      <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.php">12 Comments</a></li>
-                    </ul>
-                  </div>
-
-                  <div class="content">
-                    <p>
-                      Aut iste neque ut illum qui perspiciatis similique recusandae non. Fugit autem dolorem labore omnis et. Eum temporibus fugiat voluptate enim tenetur sunt omnis.
-                    </p>
-                  </div>
-
-                  <div class="read-more mt-auto align-self-end">
-                    <a href="blog-details.php">Read More</a>
-                  </div>
-
-                </article>
-              </div><!-- End post list item -->
-
-              <div class="col-lg-6">
-                <article class="d-flex flex-column">
-
-                  <div class="post-img">
-                    <img src="assets/img/blog/blog-4.jpg" alt="" class="img-fluid">
-                  </div>
-
-                  <h2 class="title">
-                    <a href="blog-details.php">Non rem rerum nam cum quo minus. Dolor distinctio deleniti explicabo eius exercitationem.</a>
-                  </h2>
-
-                  <div class="meta-top">
-                    <ul>
-                      <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.php">John Doe</a></li>
-                      <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.php"><time datetime="2022-01-01">Jan 1, 2022</time></a></li>
-                      <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.php">12 Comments</a></li>
-                    </ul>
-                  </div>
-
-                  <div class="content">
-                    <p>
-                      Aspernatur rerum perferendis et sint. Voluptates cupiditate voluptas atque quae. Rem veritatis rerum enim et autem. Saepe atque cum eligendi eaque iste omnis a qui.
-                    </p>
-                  </div>
-
-                  <div class="read-more mt-auto align-self-end">
-                    <a href="blog-details.php">Read More</a>
-                  </div>
-
-                </article>
-              </div><!-- End post list item -->
-
-              <div class="col-lg-6">
-                <article class="d-flex flex-column">
-
-                  <div class="post-img">
-                    <img src="assets/img/blog/blog-5.jpg" alt="" class="img-fluid">
-                  </div>
-
-                  <h2 class="title">
-                    <a href="blog-details.php">Accusamus quaerat aliquam qui debitis facilis consequatur</a>
-                  </h2>
-
-                  <div class="meta-top">
-                    <ul>
-                      <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.php">John Doe</a></li>
-                      <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.php"><time datetime="2022-01-01">Jan 1, 2022</time></a></li>
-                      <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.php">12 Comments</a></li>
-                    </ul>
-                  </div>
-
-                  <div class="content">
-                    <p>
-                      In itaque assumenda aliquam voluptatem qui temporibus iusto nisi quia. Autem vitae quas aperiam nesciunt mollitia tempora odio omnis. Ipsa odit sit ut amet necessitatibus. Quo ullam ut corrupti autem consequuntur totam dolorem.
-                    </p>
-                  </div>
-
-                  <div class="read-more mt-auto align-self-end">
-                    <a href="blog-details.php">Read More</a>
-                  </div>
-
-                </article>
-              </div><!-- End post list item -->
-
-              <div class="col-lg-6">
-                <article class="d-flex flex-column">
-
-                  <div class="post-img">
-                    <img src="assets/img/blog/blog-6.jpg" alt="" class="img-fluid">
-                  </div>
-
-                  <h2 class="title">
-                    <a href="blog-details.php">Distinctio provident quibusdam numquam aperiam aut</a>
-                  </h2>
-
-                  <div class="meta-top">
-                    <ul>
-                      <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a href="blog-details.php">John Doe</a></li>
-                      <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a href="blog-details.php"><time datetime="2022-01-01">Jan 1, 2022</time></a></li>
-                      <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a href="blog-details.php">12 Comments</a></li>
-                    </ul>
-                  </div>
-
-                  <div class="content">
-                    <p>
-                      Expedita et temporibus eligendi enim molestiae est architecto praesentium dolores. Illo laboriosam officiis quis. Labore officia quia sit voluptatem nisi est dignissimos totam. Et voluptate et consectetur voluptatem id dolor magni impedit. Omnis dolores sit.
-                    </p>
-                  </div>
-
-                  <div class="read-more mt-auto align-self-end">
-                    <a href="blog-details.php">Read More</a>
-                  </div>
-
-                </article>
-              </div><!-- End post list item -->
 
             </div><!-- End blog posts list -->
 
@@ -380,7 +246,7 @@
     </section><!-- End Blog Section -->
 
   </main><!-- End #main -->
-  
+
   <?php require_once 'utils/footer.php' ?>
 
 </body>

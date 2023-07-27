@@ -17,7 +17,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 if ($num == 1){
     while($row=mysqli_fetch_assoc($result)){
     
-        if (password_verify($pass, $row['pass'])){ 
+        if (password_verify($pass, $row['passwd'])){ 
             $success = true;
            
              session_start();

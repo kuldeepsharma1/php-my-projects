@@ -20,7 +20,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
             $hash = password_hash($pass, PASSWORD_DEFAULT);
 
 
-            $sql = "INSERT INTO `users` ( `email`, `pass`, `date`) VALUES ( '$email', '$hash', current_timestamp())";
+            $sql = "INSERT INTO `users` ( `email`, `passwd`, `date`) VALUES ( '$email', '$hash', current_timestamp())";
 
             $result = mysqli_query($conn, $sql);
             if ($result) {
