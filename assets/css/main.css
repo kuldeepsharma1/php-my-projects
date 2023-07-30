@@ -25,7 +25,10 @@ a:hover {
   color: var(--color-links-hover);
   text-decoration: none;
 }
-
+.ipost {
+  font-size: medium;
+  color: red;
+}
 h1,
 h2,
 h3,

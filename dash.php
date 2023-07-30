@@ -1,10 +1,3 @@
-<?php
-
-
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Create Blog - HeroBiz Bootstrap Template</title>
+  <title>IPOST - Home 1</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -45,55 +38,38 @@
 
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
-
-  <!-- =======================================================
-  * Template Name: HeroBiz
-  * Updated: Mar 10 2023 with Bootstrap v5.2.3
-  * Template URL: https://bootstrapmade.com/herobiz-bootstrap-business-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+  <style>
+    .ipost {
+      color: green;
+    }
+  </style>
 </head>
 
 <body>
 
   <?php require_once 'utils/_nav.php' ?>
-  <main id="main">
-
-    <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs">
-      <div class="container">
-
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>Blog</h2>
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li>Blog</li>
-          </ol>
-        </div>
-
-        <div>
-          <form action="createblog.php" method="post">
-            <input type="text" name="title">
-            <input type="text" name="short_desc">
-            <input type="text" name="slug">
-            <input type="text" name="content">
-           <input type="submit" value="Submit">
-
-          </form>
-        </div>
 
 
+  <main id="main" class="container mt-4 " style="padding: 32px;">
 
+    <h1>Hello User</h1>
+
+    <div class="flex">
+      <div>
+        <a href="/php-my-projects/createblog.php" class="btn btn-primary">Create Blog</a>
       </div>
-    </div><!-- End Breadcrumbs -->
-
-    <!-- ======= Blog Section ======= -->
-
+      <div>
+        <a href="/php-my-projects/updateblog.php" class="btn btn-info mt-4">Update Blog</a>
+      </div>
+      <div>
+        <a href="/php-my-projects/deleteblog.php" class="btn btn-danger mt-4">Delete Blog</a>
+      </div>
+    </div>
 
   </main><!-- End #main -->
 
   <?php require_once 'utils/footer.php' ?>
+
 
 </body>
 

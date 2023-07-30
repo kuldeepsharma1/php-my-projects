@@ -1,10 +1,3 @@
-<?php
-
-
-?>
-
-
-
 <!DOCTYPE html>
 <html lang="en">
 
@@ -12,7 +5,7 @@
   <meta charset="utf-8">
   <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-  <title>Create Blog - HeroBiz Bootstrap Template</title>
+  <title>Blog - HeroBiz Bootstrap Template</title>
   <meta content="" name="description">
   <meta content="" name="keywords">
 
@@ -58,6 +51,7 @@
 <body>
 
   <?php require_once 'utils/_nav.php' ?>
+  
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
@@ -68,30 +62,41 @@
           <h2>Blog</h2>
           <ol>
             <li><a href="index.html">Home</a></li>
-            <li>Blog</li>
+            <li> Blog/search  </li>
           </ol>
         </div>
 
-        <div>
-          <form action="createblog.php" method="post">
-            <input type="text" name="title">
-            <input type="text" name="short_desc">
-            <input type="text" name="slug">
-            <input type="text" name="content">
-           <input type="submit" value="Submit">
-
-          </form>
-        </div>
-
-
-
       </div>
     </div><!-- End Breadcrumbs -->
+    <section>
+      <div>
+            <?php
+           
+            
+            if($_SERVER["REQUEST_METHOD"] == "GET" && isset($_GET['query'])){
+                require 'utils/_db_connect.php';
 
-    <!-- ======= Blog Section ======= -->
+                //to bachne ke liye sql injection attack
+                $search = mysqli_real_escape_string($conn , $_GET['query']);
+               
+                $query = "SELECT * FROM `blog` WHERE `title` LIKE '%$search%' ";
+               
+                $result = mysqli_query($conn,$query);
+            }
+            if (mysqli_num_rows($result) > 0){
+                while ($row = mysqli_fetch_assoc($result)){
+                    echo '<h2>'.$row['title'] . '<h2>';
+                  echo'  <a href="/php-my-projects/blog-details.php?slug='. $row['slug'].' ">Read More</a>';
+                }
+            } else {
+             echo '<h2>Nothing Found <h2>';
+            }
 
-
-  </main><!-- End #main -->
+            ?>
+        </div>
+    </section>
+  </main>
+<!-- End #main -->
 
   <?php require_once 'utils/footer.php' ?>
 
