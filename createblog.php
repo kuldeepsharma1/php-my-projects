@@ -1,7 +1,3 @@
-<?php
-
-
-?>
 
 
 
@@ -57,7 +53,15 @@
 
 <body>
 
-  <?php require_once 'utils/_nav.php' ?>
+  <?php require_once 'utils/_nav.php' ?> 
+
+
+
+
+
+
+
+
   <main id="main">
 
     <!-- ======= Breadcrumbs ======= -->
@@ -72,18 +76,34 @@
           </ol>
         </div>
 
-        <div>
-          <form action="createblog.php" method="post">
-            <input type="text" name="title">
-            <input type="text" name="short_desc">
-            <input type="text" name="slug">
-            <input type="text" name="content">
-           <input type="submit" value="Submit">
-
-          </form>
-        </div>
 
 
+        <form action="logic.php" method="POST" enctype="multipart/form-data">
+          <div class="mb-3">
+            <label for="exampleInputEmail1" class="form-label">Title</label>
+            <input type="text" class="form-control" name="title" id="exampleInputEmail1" aria-describedby="emailHelp">
+
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword2"  class="form-label">Short description</label>
+            <input type="text" class="form-control" name="short_desc" id="exampleInputPassword2">
+          </div>
+          <div class="mb-3">
+            <label for="exampleInputPassword1"  class="form-label">Slug</label>
+            <input type="text" class="form-control" name="slug" id="exampleInputPassword1">
+          </div>
+          <div class="form-floating">
+            <textarea class="form-control" placeholder="Write Your Content here" name="content" id="floatingTextarea2"
+              style="height: 100px"></textarea>
+            <label for="floatingTextarea2">Blog Content</label>
+          </div>
+
+          <div>
+            <label for="formFileLg" class="form-label">Large file input example</label>
+            <input class="form-control form-control-lg" id="formFileLg" name="img" type="file">
+          </div>
+          <button type="submit" class="btn btn-primary">Submit</button>
+        </form>
 
       </div>
     </div><!-- End Breadcrumbs -->
@@ -98,3 +118,4 @@
 </body>
 
 </html>
+

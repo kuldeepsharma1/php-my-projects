@@ -83,7 +83,7 @@
 
               if(isset($_GET['slug'])){
                 $slug = $_GET['slug'];
-                $sql = "SELECT * FROM `blogcontent` WHERE slug='$slug'";
+                $sql = "SELECT * FROM `blog` WHERE slug='$slug'";
                 $result = mysqli_query($conn, $sql);
                 if($result->num_rows == 1){
                   $row = mysqli_fetch_assoc($result)
@@ -94,7 +94,7 @@
             <article class="blog-details">
 
               <div class="post-img">
-                <img src="<?php echo $row['img']; ?>" alt="" class="img-fluid">
+                <img src="images/<?php echo $row['img']; ?>" alt="" class="img-fluid">
               </div>
 
               <h2 class="title"><?php echo $row['title']; ?></h2>

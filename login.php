@@ -7,35 +7,35 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     require 'utils/_db_connect.php';
     $email = $_POST["email"];
     $pass = $_POST["pass"];
-    
+
     $sql = "Select * from users where email='$email'";
-    $result = mysqli_query($conn ,$sql);
+    $result = mysqli_query($conn, $sql);
     $num = mysqli_num_rows($result);
 
-   
-    
-if ($num == 1){
-    while($row=mysqli_fetch_assoc($result)){
-    
-        if (password_verify($pass, $row['passwd'])){ 
-            $success = true;
-           
-             session_start();
-             $_SESSION['loggedin'] = true;
-            $_SESSION['email'] = $email;
-            header("location: index.php");
-            //echo"$unumber";
-           // echo "$uname";
-        } 
-        else{
-            $showError = "Invalid Credentials";
+
+
+    if ($num == 1) {
+        while ($row = mysqli_fetch_assoc($result)) {
+
+            if (password_verify($pass, $row['passwd'])) {
+                $success = true;
+
+
+                $_SESSION['loggedin'] = true;
+                $_SESSION['uname'] = $row['uname'];
+
+                header("Location: index.php");
+
+                //echo"$unumber";
+                // echo "$uname";
+            } else {
+                $showError = "Invalid Credentials";
+            }
         }
+
+    } else {
+        $showError = "Email Not Exist";
     }
-    
-} 
-else{
-    $showError = "Email Not Exist";
-}
 }
 
 ?>
@@ -90,29 +90,29 @@ else{
 
     <main id="main">
         <div class="container register-form " id="register" style="margin-top:70px;margin-bottom:50px;">
-       <!-- error block -->
-       <?php
-    if ($success) {
-        echo  ' <div class="alert alert-success alert-dismissible fade show" role="alert">
+            <!-- error block -->
+            <?php
+            if ($success) {
+                echo ' <div class="alert alert-success alert-dismissible fade show" role="alert">
             <strong>Sucess</strong> Login sucessfully 
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>';
-    }
-    if ($showError) {
-        echo  ' <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            }
+            if ($showError) {
+                echo ' <div class="alert alert-danger alert-dismissible fade show" role="alert">
                  <strong>Fail</strong> ' . $showError . '
                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
              </div>';
-    }
-    if ($err) {
-        echo  ' <div class="alert alert-danger alert-dismissible fade show" role="alert">
+            }
+            if ($err) {
+                echo ' <div class="alert alert-danger alert-dismissible fade show" role="alert">
                  <strong>Fail</strong> Application Error
                  <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
              </div>';
-    }
+            }
 
 
-    ?>
+            ?>
             <form action="login.php" method="POST">
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
@@ -124,7 +124,7 @@ else{
                     <label for="exampleInputPassword" class="form-label">Password</label>
                     <input type="password" name="pass" class="form-control" id="exampleInputPassword" required>
                 </div>
-                
+
                 <button type="submit" class="btn btn-primary">Submit</button>
             </form>
 

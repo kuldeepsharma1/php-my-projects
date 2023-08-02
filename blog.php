@@ -89,7 +89,7 @@
                   <article class="d-flex flex-column">
 
                     <div class="post-img">
-                      <img src="<?php echo $row['img']; ?>" alt="" class="img-fluid">
+                      <img src="images/<?php echo $row['img']; ?>" alt="" class="img-fluid">
                     </div>
 
                     <h2 class="title">

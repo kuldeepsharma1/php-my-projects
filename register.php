@@ -6,21 +6,29 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     require 'utils/_db_connect.php';
     $email = $_POST["email"];
+    $uname = $_POST["uname"];
     $pass = $_POST["pass"];
     $cpass = $_POST["cpass"];
 
     //check whether username already in table
     $existSql1 = "SELECT * FROM `users`where email='$email'";
+    $existSql2 = "SELECT * FROM `users`where uname='$uname'";
     $result1 = mysqli_query($conn, $existSql1);
+    $result2 = mysqli_query($conn, $existSql2);
     $numExistRows1 = mysqli_num_rows($result1);
-    if ($numExistRows1 > 0) {
+    $numExistRows2 = mysqli_num_rows($result2);
+    
+    if ($numExistRows2 > 0) {
+        $showError = " Username Already Existed";
+    }
+   else if ($numExistRows1 > 0) {
         $showError = " Email Already Existed";
     }else{
         if ($pass == $cpass) {
             $hash = password_hash($pass, PASSWORD_DEFAULT);
 
 
-            $sql = "INSERT INTO `users` ( `email`, `passwd`, `date`) VALUES ( '$email', '$hash', current_timestamp())";
+            $sql = "INSERT INTO `users` ( `uname`,`email`, `passwd`, `date`) VALUES ('$uname' ,'$email', '$hash', current_timestamp())";
 
             $result = mysqli_query($conn, $sql);
             if ($result) {
@@ -129,6 +137,12 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
     ?>
             <form action="register.php" method="POST">
+            <div class="mb-3">
+                    <label for="exampleInputEmail12" class="form-label">Create a Unique Username</label>
+                    <input type="text" name="uname" class="form-control" id="exampleInputEmail1" 
+                        aria-describedby="emailHelp" required>
+                    <div id="emailHelp" class="form-text">We'll never share your email with anyone else.</div>
+                </div>
                 <div class="mb-3">
                     <label for="exampleInputEmail1" class="form-label">Email address</label>
                     <input type="email" name="email" class="form-control" id="exampleInputEmail1"
