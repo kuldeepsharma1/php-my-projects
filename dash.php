@@ -56,13 +56,13 @@
 
     <div class="flex">
       <div>
-        <a href="/php-my-projects/createblog.php" class="btn btn-primary">Create Blog</a>
+        <a href="createblog.php" class="btn btn-primary">Create Blog</a>
       </div>
       <div>
-        <a href="/php-my-projects/updateblog.php" class="btn btn-info mt-4">Update Blog</a>
+        <a href="updateblog.php" class="btn btn-info mt-4">Update Blog</a>
       </div>
       <div>
-        <a href="/php-my-projects/deleteblog.php" class="btn btn-danger mt-4">Delete Blog</a>
+        <a href="deleteblog.php" class="btn btn-danger mt-4">Delete Blog</a>
       </div>
     </div>
 
