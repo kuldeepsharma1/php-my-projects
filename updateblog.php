@@ -1,3 +1,4 @@
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -39,192 +40,168 @@
   <!-- Template Main CSS File -->
   <link href="assets/css/main.css" rel="stylesheet">
 
-  <!-- =======================================================
-  * Template Name: HeroBiz
-  * Updated: Mar 10 2023 with Bootstrap v5.2.3
-  * Template URL: https://bootstrapmade.com/herobiz-bootstrap-business-template/
-  * Author: BootstrapMade.com
-  * License: https://bootstrapmade.com/license/
-  ======================================================== -->
+
 </head>
 
 <body>
 
   <?php require_once 'utils/_nav.php' ?>
 
+  <?php
+ob_start();
+require 'utils/_db_connect.php';
+
+$uname = $_SESSION['uname'];
+
+$sql = "SELECT * FROM `blog` WHERE author = '$uname'";
+$result = mysqli_query($conn, $sql);
+
+$uid = $_SESSION['uid'];
+
+if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+  $id = $_POST['post_id'];
+  $title = $_POST['title'];
+  $short_desc = $_POST['short_desc'];
+
+  $content = $_POST['content'];
+
+  if (isset($_FILES['img'])) {
+    $img = $_FILES['img']['name'];
+    $img_tmp = $_FILES['img']['tmp_name'];
+    $img_size = $_FILES['img']['size'];
+    $img_type = $_FILES['img']['type'];
+
+    //validation
 
 
 
+    move_uploaded_file($img_tmp, 'images/' . $img);
+    //update the blog
+    $update = "UPDATE `blog` SET `title` = '$title',`short_desc` = '$short_desc',`content`='$content',`img`='$img' WHERE id = '$id'";
+    mysqli_query($conn, $update);
+    ob_end_flush();
+    exit();
+
+  } 
+
+}
+
+?>
 
 
 
-
-  <main id="main">
-
-    <!-- ======= Breadcrumbs ======= -->
-    <div class="breadcrumbs">
-      <div class="container">
-
-        <div class="d-flex justify-content-between align-items-center">
-          <h2>Blog</h2>
-          <ol>
-            <li><a href="index.html">Home</a></li>
-            <li>Blog</li>
-          </ol>
-        </div>
-        <!-- ======= Blog Section ======= -->
-        <section id="blog" class="blog">
-          <div class="container" data-aos="fade-up">
-
-            <div class="row g-5">
-
-              <div class="col-lg-8">
-
-                <div class="row gy-4 posts-list">
+  <!-- ======= Blog Section ======= -->
 
 
-                  <?php
-                  require 'utils/_db_connect.php';
-                  $sql = "SELECT * FROM `blog`";
-                  $result = mysqli_query($conn, $sql);
-                  while ($row = mysqli_fetch_assoc($result)) {
-                    ?>
-                    <div class="col-lg-6">
-                      <article class="d-flex flex-column">
-
-                        <div class="post-img">
-                          <img src="images/<?php echo $row['img']; ?>" alt="" class="img-fluid">
-                        </div>
-
-                        <h2 class="title">
-                          <a href="blog-details.php">
-                            <?php echo $row['title']; ?>
-                          </a>
-                        </h2>
-
-                        <div class="meta-top">
-                          <ul>
-                            <li class="d-flex align-items-center"><i class="bi bi-person"></i> <a
-                                href="blog-details.php">Author Name</a></li>
-                            <li class="d-flex align-items-center"><i class="bi bi-clock"></i> <a
-                                href="blog-details.php"><time datetime="2022-01-01">Jan 1, 2022</time></a></li>
-                            <li class="d-flex align-items-center"><i class="bi bi-chat-dots"></i> <a
-                                href="blog-details.php">12 Comments</a></li>
-                          </ul>
-                        </div>
-
-                        <div class="content">
-                          <p>
-                            <?php echo $row['short_desc']; ?>
-                          </p>
-                        </div>
-
-                        <div class="read-more mt-auto align-self-end">
-                          <a data-bs-toggle="modal" data-bs-target="#exampleModal<?php echo $row['slug']; ?>"
-                            href="/php-my-projects/updateblog.php?slug=<?php echo $row['slug']; ?>">Edit</a>
-                        </div>
-
-                      </article>
-                    </div>
-
-                    <?php
-                  }
-                  ?>
+  <div class="container " style="margin-top:70px;">
+    <div class="row">
+      <?php
 
 
-                  <?php
-                  require 'utils/_db_connect.php';
-                  $sql = "SELECT * FROM `blog`";
-                  $result = mysqli_query($conn, $sql);
-                  while ($row = mysqli_fetch_assoc($result)) {
-                    echo '          <!-- Modal -->
-                    <div class="modal fade" id="exampleModal' . $row['slug'] . ' " tabindex="-1" aria-labelledby="exampleModalLabel' . $row['slug'] . ' " aria-hidden="true">
-                      <div class="modal-dialog">
-                        <div class="modal-content">
-                          <div class="modal-header">
-                            <h1 class="modal-title fs-5" id="exampleModalLabel' . $row['slug'] . ' ">Update Blog </h1>
-                            <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                          </div>
-                          <div class="modal-body">';
-                    if ($_SERVER['REQUEST_METHOD'] === 'GET' && isset($_GET['slug'])) {
-                      echo '
+      while ($row = mysqli_fetch_assoc($result)) {
+        ?>
 
-      <form action="updateblog.php" method="POST" enctype="multipart/form-data">
-      <div class="mb-3">
-        <label for="exampleInputEmail1" class="form-label">Title</label>
-        <input type="text" class="form-control" name="title" value="title" id="exampleInputEmail1"
-          aria-describedby="emailHelp">
+        <div class="col-lg-4">
+          <article>
 
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword2" class="form-label">Short description</label>
-        <input type="text" class="form-control" name="short_desc" value="short_desc" id="exampleInputPassword2">
-      </div>
-      <div class="mb-3">
-        <label for="exampleInputPassword1" class="form-label">Slug</label>
-        <input type="text" class="form-control" name="slug" value="slug" id="exampleInputPassword1">
-      </div>
-      <div class="form-floating">
-        <textarea class="form-control" placeholder="Write Your Content here" name="content" value="content"
-          id="floatingTextarea2" style="height: 100px"></textarea>
-        <label for="floatingTextarea2">Blog Content</label>
-      </div>
+            <div class="card" style="width: 18rem;">
+              <img src="images/<?php echo $row['img']; ?>" alt="" class="img-fluid">
+            </div>
 
-      <div>
-        <label for="formFileLg" class="form-label">Large file input example</label>
-        <input class="form-control form-control-lg" id="formFileLg" name="img" type="file">
-      </div>
-      
-    
-      </div>';
-                    }
+            <div class="card-body bg-yellow">
+              <h2 class="">
 
-                    echo ' <div class="modal-footer">
-        <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
-        <button type="submit" class="btn btn-primary">Save changes</button>
-      </form>
-      </div>
-    </div>
-  </div>
-</div>
-        ';
+                <?php echo $row['title']; ?>
 
-                  }
-                  ?>
-
-                  <!-- End post list item -->
-
-
-
-
-
-
-                </div><!-- End blog posts list -->
-
-                <div class="blog-pagination">
-                  <ul class="justify-content-center">
-                    <li><a href="#">1</a></li>
-                    <li class="active"><a href="#">2</a></li>
-                    <li><a href="#">3</a></li>
-                  </ul>
-                </div><!-- End blog pagination -->
-
-              </div>
-
+              </h2>
+              <p>
+                <?php echo $row['short_desc']; ?>
+              </p>
+              <button type="button" class="btn btn-primary" data-bs-toggle="modal"
+                data-bs-target="#exampleModal<?php echo $row['id']; ?>">
+                Edit
+              </button>
 
             </div>
 
+
+
+
+            <!-- Button trigger modal -->
+
+
+          </article>
+
+        </div>
+
+
+
+
+
+
+
+        <!-- Modal -->
+        <div class="modal fade" id="exampleModal<?php echo $row['id']; ?>" tabindex="-1"
+          aria-labelledby="exampleModalLabel" aria-hidden="true">
+          <div class="modal-dialog">
+            <div class="modal-content">
+              <div class="modal-header">
+                <h1 class="modal-title fs-5" id="exampleModalLabel">Update Blog</h1>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+              </div>
+              <div class="modal-body">
+                <form action="updateblog.php" method="post" enctype="multipart/form-data">
+                  <input type="hidden" name="post_id" value="<?php echo $row['id']; ?>">
+                  <div class="form-group">
+                    <label for="title">Title</label>
+                    <input type="text" required class="form-control" name="title" value="<?php echo $row['title']; ?>">
+                  </div>
+                  <!-- <div class="form-group">
+                    <label for="slug">Slug</label>
+                    <input type="text" required class="form-control" name="slug" value="<?php echo $row['slug']; ?>">
+                  </div> -->
+                  <div class="form-group">
+                    <label for="short_desc">Short Description</label>
+                    <input type="text" class="form-control" name="short_desc" value="<?php echo $row['short_desc']; ?>">
+                  </div>
+                  <!-- Add more form fields as needed -->
+
+                  <div class="form-group">
+                    <label for="content">Content</label>
+                    <textarea class="form-control" required name="content"><?php echo $row['content']; ?></textarea>
+                  </div>
+                  <div class="form-group">
+                    <label for="img">Update Image</label>
+                    <input required class="form-control-file" type="file" name="img">
+                  </div>
+
+
+
+              </div>
+              <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="submit" class="btn btn-primary">Update</button>
+                </form>
+              </div>
+            </div>
           </div>
-        </section><!-- End Blog Section -->
+        </div>
+
+        <?php
+      }
+      
+      ?>
+ <?php if (mysqli_num_rows($result) > 0){
+                
+            } else {
+             echo '<h2 style="font-size:50px;">Nothing Found <h2>';
+            }
+?>
+    </div>
+  </div>
 
 
-      </div>
-    </div><!-- End Breadcrumbs -->
 
-    <!-- ======= Blog Section ======= -->
-
-
-  </main><!-- End #main -->
 
   <?php require_once 'utils/footer.php' ?>
 

@@ -81,26 +81,26 @@
         <form action="logic.php" method="POST" enctype="multipart/form-data">
           <div class="mb-3">
             <label for="exampleInputEmail1" class="form-label">Title</label>
-            <input type="text" class="form-control" name="title" id="exampleInputEmail1" aria-describedby="emailHelp">
+            <input type="text" class="form-control" name="title" id="exampleInputEmail1" aria-describedby="emailHelp" required>
 
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword2"  class="form-label">Short description</label>
-            <input type="text" class="form-control" name="short_desc" id="exampleInputPassword2">
+            <input type="text" class="form-control" name="short_desc" id="exampleInputPassword2" required>
           </div>
           <div class="mb-3">
             <label for="exampleInputPassword1"  class="form-label">Slug</label>
-            <input type="text" class="form-control" name="slug" id="exampleInputPassword1">
+            <input type="text" class="form-control" name="slug" id="exampleInputPassword1" required>
           </div>
           <div class="form-floating">
-            <textarea class="form-control" placeholder="Write Your Content here" name="content" id="floatingTextarea2"
+            <textarea class="form-control" placeholder="Write Your Content here" name="content" id="floatingTextarea2" required
               style="height: 100px"></textarea>
             <label for="floatingTextarea2">Blog Content</label>
           </div>
 
           <div>
             <label for="formFileLg" class="form-label">Large file input example</label>
-            <input class="form-control form-control-lg" id="formFileLg" name="img" type="file">
+            <input class="form-control form-control-lg" id="formFileLg" name="img" type="file" required>
           </div>
           <button type="submit" class="btn btn-primary">Submit</button>
         </form>

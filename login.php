@@ -19,10 +19,11 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (password_verify($pass, $row['passwd'])) {
                 $success = true;
-session_start();
+                session_start();
 
                 $_SESSION['loggedin'] = true;
                 $_SESSION['uname'] = $row['uname'];
+                $_SESSION['uid'] = $row['id'];
 
                 header("Location: index.php");
 

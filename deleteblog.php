@@ -69,8 +69,62 @@
     </div><!-- End Breadcrumbs -->
 
     <!-- ======= Blog Section ======= -->
-   
+    <?php 
+    require 'utils/_db_connect.php';
+    $uname = $_SESSION['uname'];
+    $sql = "SELECT * FROM `blog` WHERE author = '$uname'";
+    $result = mysqli_query($conn, $sql);
+    $uid = $_SESSION['uid'];
+    if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+      if (isset($_POST['delete_post'])){
+        $post_id = $_POST['post_id'];
+        $uname = $_SESSION['uname'];
 
+        //check user owns post or not 
+        $chq = "SELECT * FROM `blog` WHERE `id` = '$post_id' AND author = '$uname'";
+        $result = mysqli_query($conn, $chq);
+
+        if (mysqli_num_rows($result) == 1 ){
+          //delete blog
+          $del = "DELETE FROM blog WHERE id = '$post_id'";
+          mysqli_query($conn , $del);
+        }
+
+      }
+
+    }
+
+
+
+
+    ?>
+ <div class="container mt-5">
+        <h1>Blog Posts</h1>
+        <div class="container " style="margin-top:70px;">
+    <div class="row">
+        <?php while ($row = mysqli_fetch_assoc($result)) : ?>
+          <div class="col-lg-4">
+          <article>
+
+        
+            <div class="card mt-3">
+            <img src="images/<?php echo $row['img']; ?>" alt="" class="img-fluid">
+            </div>
+                <div class="card-header"><?php echo $row['title']; ?></div>
+                <div class="card-body">
+                    <?php echo $row['content']; ?>
+                </div>
+                <div class="card-footer">
+                    <form action="deleteblog.php" method="POST">
+                        <input type="hidden" name="post_id" value="<?php echo $row['id']; ?>">
+                        <button type="submit" class="btn btn-danger" name="delete_post">Delete</button>
+                        <a href="updateblog.php"class="btn btn-secondary" >Edit</a>
+                    </form>
+                </div>
+          </article>
+            </div>
+        <?php endwhile; ?>
+    </div>
   </main><!-- End #main -->
 
   <?php require_once 'utils/footer.php' ?>

@@ -4,10 +4,13 @@
 if ($_SERVER["REQUEST_METHOD"] == "POST") {
     $title = $_POST["title"];
     session_start();
+    
     $short_desc = $_POST['short_desc'];
     $slug = $_POST['slug'];
     $content = $_POST['content'];
     $author = $_SESSION['uname'];
+
+
     if (isset($_FILES['img'])) {
         $img = $_FILES['img']['name'];
         $img_tmp = $_FILES['img']['tmp_name'];
