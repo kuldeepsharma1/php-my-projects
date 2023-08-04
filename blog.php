@@ -116,7 +116,7 @@
                     </div>
 
                     <div class="read-more mt-auto align-self-end">
-                      <a href="/php-my-projects/blog-details.php?slug=<?php echo $row['slug']; ?>">Read More</a>
+                      <a href="blog-details.php?slug=<?php echo $row['slug']; ?>">Read More</a>
                     </div>
 
                   </article>
