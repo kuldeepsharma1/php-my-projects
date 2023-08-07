@@ -1,3 +1,4 @@
+<?php require_once 'utils/session.php' ?>
 <!DOCTYPE html>
 <html lang="en">
 

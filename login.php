@@ -1,4 +1,17 @@
+<?php require_once 'utils/session.php' ?>
 <?php
+
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    header('Location: login.php');
+    exit;
+} else {
+    header('Location: index.php');
+    exit;
+}
+
+?>
+<?php
+
 $err = false;
 $success = false;
 $showError = false;
@@ -19,7 +32,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 
             if (password_verify($pass, $row['passwd'])) {
                 $success = true;
-                session_start();
+
 
                 $_SESSION['loggedin'] = true;
                 $_SESSION['uname'] = $row['uname'];

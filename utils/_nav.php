@@ -1,8 +1,4 @@
-<?php
-session_start();
 
-
-?>
 <!-- ======= Header ======= -->
 <header id="header" class="header fixed-top" >
   <div class="container-fluid d-flex align-items-center justify-content-between">

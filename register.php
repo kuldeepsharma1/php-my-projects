@@ -1,3 +1,16 @@
+<?php require_once 'utils/session.php' ?>
+<?php
+
+if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
+    
+    header('Location: login.php');
+    exit;
+} else {
+    header('Location: index.php');
+    exit;
+}
+
+?>
 <?php
 $err = false;
 $success = false;
