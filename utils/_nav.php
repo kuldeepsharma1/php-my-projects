@@ -1,22 +1,18 @@
-
 <!-- ======= Header ======= -->
-<header id="header" class="header fixed-top" >
+<header id="header" class="header fixed-top">
   <div class="container-fluid d-flex align-items-center justify-content-between">
 
     <a href="index.php" class="logo d-flex align-items-center scrollto me-auto me-lg-0">
       <!-- Uncomment the line below if you also wish to use an image logo -->
       <!-- <img src="assets/img/logo.png" alt=""> -->
-      <h1 class="ipost">IPOST<span>.</span></h1>
+      <h1 class="ipost">TRIP<span>.</span></h1>
     </a>
 
     <nav id="navbar" class="navbar">
       <ul>
 
-        <li class="dropdown"><a href="#"><span>Home</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
-          <ul>
-            <li><a href="index.php" class="active">Home 1 - index.php</a></li>
+        <li><a class="nav-link scrollto" href="index.php">Home </a>
 
-          </ul>
         </li>
 
         <li><a class="nav-link scrollto" href="index.php#about">About</a></li>
@@ -24,53 +20,67 @@
         if (isset($_SESSION['loggedin'])) {
           echo '<a class="nav-link scrollto" href="dash.php">Dashboared</a></li>';
         } ?>
-        <li><a class="nav-link scrollto" href="portfolio-details.php">Portfolio</a></li>
+        <li><a class="nav-link scrollto" href="popular-destination.php">Popular Destinations</a></li>
         <li><a class="nav-link scrollto" href="index.php#team">Team</a></li>
         <li><a href="blog.php">Blog</a></li>
-        <li class="dropdown megamenu"><a href="#"><span>Mega Menu</span> <i
-              class="bi bi-chevron-down dropdown-indicator"></i></a>
+        <li class="dropdown megamenu">
+          <a href="#"><span>Explore Destinations</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
           <ul>
             <li>
-              <a href="#">Column 1 link 1</a>
-              <a href="#">Column 1 link 2</a>
-              <a href="#">Column 1 link 3</a>
+              <div class="megamenu-column">
+                <p class="megamenu-title fw-bold text-uppercase text-primary ">Top Destinations</p>
+                <a href="#">City Escapes</a>
+                <a href="#">Beach Getaways</a>
+                <a href="#">Mountain Retreats</a>
+              </div>
             </li>
             <li>
-              <a href="#">Column 2 link 1</a>
-              <a href="#">Column 2 link 2</a>
-              <a href="#">Column 3 link 3</a>
+              <div class="megamenu-column">
+                <p class="megamenu-title fw-bold text-uppercase text-primary ">Travel Tips</p>
+                <a href="#">Packing Essentials</a>
+                <a href="#">Local Cuisine</a>
+                <a href="#">Cultural Etiquette</a>
+              </div>
             </li>
             <li>
-              <a href="#">Column 3 link 1</a>
-              <a href="#">Column 3 link 2</a>
-              <a href="#">Column 3 link 3</a>
+              <div class="megamenu-column">
+                <p class="megamenu-title fw-bold text-uppercase text-primary ">Adventure Trails</p>
+                <a href="#">Hiking Expeditions</a>
+                <a href="#">Scenic Cycling</a>
+                <a href="#">Wildlife Safaris</a>
+              </div>
             </li>
             <li>
-              <a href="#">Column 4 link 1</a>
-              <a href="#">Column 4 link 2</a>
-              <a href="#">Column 4 link 3</a>
+              <div class="megamenu-column">
+                <p class="megamenu-title fw-bold text-uppercase text-primary">Inspiring Stories</p>
+                <a href="#">Traveler Chronicles</a>
+                <a href="#">Cultural Encounters</a>
+                <a href="#">Personal Journeys</a>
+              </div>
             </li>
           </ul>
         </li>
-        <li class="dropdown"><a href="#"><span>Drop Down</span> <i
-              class="bi bi-chevron-down dropdown-indicator"></i></a>
+
+        <li class="dropdown">
+          <a href="#"><span>Discover More</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
           <ul>
-            <li><a href="#">Drop Down 1</a></li>
-            <li class="dropdown"><a href="#"><span>Deep Drop Down</span> <i
-                  class="bi bi-chevron-down dropdown-indicator"></i></a>
+            <li><a href="#">Explore Destinations</a></li>
+            <li class="dropdown">
+              <a href="#"><span>Adventure Insights</span> <i class="bi bi-chevron-down dropdown-indicator"></i></a>
               <ul>
-                <li><a href="#">Deep Drop Down 1</a></li>
-                <li><a href="#">Deep Drop Down 2</a></li>
-                <li><a href="#">Deep Drop Down 3</a></li>
-                <li><a href="#">Deep Drop Down 4</a></li>
-                <li><a href="#">Deep Drop Down 5</a></li>
+                <li><a href="#">Hiking Escapades</a></li>
+                <li><a href="#">Water Adventures</a></li>
+                <li><a href="#">Wildlife Encounters</a></li>
+                <li><a href="#">Cultural Expeditions</a></li>
+                <li><a href="#">Thrilling Explorations</a></li>
               </ul>
             </li>
-            <li><a href="#">Drop Down 2</a></li>
-            <li><a href="#">Drop Down 3</a></li>
-            <li><a href="#">Drop Down 4</a></li>
+            <li><a href="#">Travel Tips</a></li>
+            <li><a href="#">Inspiring Stories</a></li>
+            <li><a href="#">Culinary Delights</a></li>
           </ul>
         </li>
+
         <li><a class="nav-link scrollto" href="index.php#contact">Contact</a></li>
       </ul>
       <i class="bi bi-list mobile-nav-toggle d-none"></i>

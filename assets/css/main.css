@@ -1,17 +1,4 @@
-/**
-* Template Name: HeroBiz
-* Updated: Mar 10 2023 with Bootstrap v5.2.3
-* Template URL: https://bootstrapmade.com/herobiz-bootstrap-business-template/
-* Author: BootstrapMade.com
-* License: https://bootstrapmade.com/license/
-*/
 
-/**
-* Check out variables.css for easy customization of colors, typography, and other repetitive properties
-*/
-/*--------------------------------------------------------------
-# General
---------------------------------------------------------------*/
 :root {
   scroll-behavior: smooth;
 }
@@ -25,10 +12,7 @@ a:hover {
   color: var(--color-links-hover);
   text-decoration: none;
 }
-.ipost {
-  font-size: medium;
-  color: red;
-}
+
 h1,
 h2,
 h3,
@@ -449,6 +433,7 @@ section {
     left: -100%;
   }
 }
+
 
 /*--------------------------------------------------------------
 # Mobile Navigation
