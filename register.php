@@ -1,16 +1,5 @@
-<?php require_once 'utils/session.php' ?>
-<?php
 
-if (!isset($_SESSION['loggedin']) || $_SESSION['loggedin'] !== true) {
-    
-    header('Location: login.php');
-    exit;
-} else {
-    header('Location: index.php');
-    exit;
-}
 
-?>
 <?php
 $err = false;
 $success = false;
@@ -72,7 +61,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
     <meta charset="utf-8">
     <meta content="width=device-width, initial-scale=1.0" name="viewport">
 
-    <title>HeroBiz Bootstrap Template - Home 1</title>
+    <title>Register</title>
     <meta content="" name="description">
     <meta content="" name="keywords">
 
@@ -109,7 +98,7 @@ if ($_SERVER["REQUEST_METHOD"] == "POST") {
 </head>
 
 <body>
-
+<?php require_once 'utils/session.php' ?>
     <?php require_once 'utils/_nav.php' ?>
 
 
